@@ -51,6 +51,9 @@ function createCards(data) {
   for (let i = 0; i < data.length; i++) {
     let imgURL = data[i]["company_logo"];
     let titleText = data[i]["title"];
+    let description = data[i]["description"];
+    let howToApply = data[i]["how_to_apply"];
+    let jobDetails = data[i]["url"];
 
     let outputContainer = document.getElementById("output-container");
 
@@ -73,16 +76,20 @@ function createCards(data) {
     cardTitle.textContent = titleText;
     cardBody.appendChild(cardTitle);
 
-    let cardText1 = document.createElement("p");
+    let cardText1 = document.createElement("button");
     cardText1.setAttribute("class", "card-text");
+    cardText1.innerHTML = description;
     cardBody.appendChild(cardText1);
 
     let cardText2 = document.createElement("p");
     cardText2.setAttribute("class", "card-text");
-
+    cardText2.innerHTML = howToApply;
     cardBody.appendChild(cardText2);
-    let button = document.createElement("button");
-    button.setAttribute("class", "btn btn-primary");
+
+    let button = document.createElement("a");
+    button.setAttribute("class", "btn btn-primary job-btn");
+    button.setAttribute("href", jobDetails);
+    button.textContent = "View Job Details";
     cardBody.appendChild(button);
   }
 }
